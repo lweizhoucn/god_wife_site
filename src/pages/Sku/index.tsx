@@ -29,12 +29,20 @@ const ClientPage: React.FC = () => {
       valueType: 'text',
     },
     {
-      title: '价格',
+      title: '底价',
+      dataIndex: 'lowestPrice',
+      valueType: 'digit',
+      search: false,
+      // hideInForm:true,
+      hideInTable: true,
+    },
+    {
+      title: '卖价',
       dataIndex: 'price',
       valueType: 'digit',
       search: false,
     },
-   
+
     {
       title: '截止时间',
       dataIndex: 'closeTime',
@@ -45,7 +53,7 @@ const ClientPage: React.FC = () => {
       dataIndex: 'sendDate',
       valueType: 'date',
     },
-     {
+    {
       title: '状态',
       dataIndex: 'state',
       valueEnum: {
@@ -54,6 +62,7 @@ const ClientPage: React.FC = () => {
     },
     {
       title: '描述',
+      ellipsis: true,
       dataIndex: 'description',
       valueType: 'text',
       search: false,
@@ -63,6 +72,14 @@ const ClientPage: React.FC = () => {
       valueType: 'option',
       render: (_, record) => [
         <SkuEditModal edit={true} current={record} reload={reloadData} />,
+        //   <Popconfirm
+        //     title="确认删除吗?"
+        //     onConfirm={() => {
+        //       del({ id: record.id });
+        //     }}
+        //   >
+        //     <a>删除</a>
+        //   </Popconfirm>,
       ],
     },
   ];

@@ -35,3 +35,10 @@ export async function update(options?: Record<string, any>) {
     data: options,
   });
 }
+
+export async function del(options?: Record<string, any>) {
+  return request('/sku/delete', {
+    method: 'GET',
+    params: options,
+  });
+}

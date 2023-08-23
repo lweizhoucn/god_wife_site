@@ -11,6 +11,7 @@ import {
   ProFormTextArea,
 } from '@ant-design/pro-components';
 import { Button, message } from 'antd';
+import dayjs from 'dayjs';
 
 const formItemLayout = {
   labelCol: { span: 4 },
@@ -54,11 +55,22 @@ const SkuEditModal: React.FC<{
       }}
     >
       <ProFormDigit name="id" label="ID" disabled hidden={!edit} />
-      <ProFormText name="name" label="名称" />
-      <ProFormDigit name="price" label="价格" />
-      <ProFormDateTimePicker name="closeTime" label="截单时间" />
+      <ProFormText name="name" label="名称" rules={[{ required: true }]} />
+      <ProFormDigit name="price" label="价格" rules={[{ required: true }]} />
+      <ProFormDateTimePicker
+        transform={(val) => {
+          return { closeTime: dayjs(val).format('YYYY-MM-DD HH:mm:ss') };
+        }}
+        name="closeTime"
+        label="截单时间"
+      />
       <ProFormDatePicker name="sendDate" label="送达时间" />
-      <ProFormSelect name="state" label="状态" options={skuStateSelect} />
+      <ProFormSelect
+        name="state"
+        label="状态"
+        options={skuStateSelect}
+        rules={[{ required: true }]}
+      />
       <ProFormTextArea name="description" label="描述" />
     </ModalForm>
   );

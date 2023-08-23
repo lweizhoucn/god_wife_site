@@ -6,6 +6,7 @@ interface ResultInfo<any> {
 
 interface ClinetInfo {
   id: number;
+  historyOrderCount: number;
   phoneNumber: string;
   building:number;
   roomNumber: number;

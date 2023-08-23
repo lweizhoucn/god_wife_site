@@ -54,7 +54,7 @@ const ClientEditModal: React.FC<{
       <ProFormDigit name="building" label="楼栋" />
       <ProFormDigit name="roomNumber" label="房号" />
       <ProFormText name="phoneNumber" label="手机号码" />
-      <ProFormText name="nickName" label="昵称" />
+      <ProFormText name="nickName" label="昵称"  rules={[{required: true}]}/>
     </ModalForm>
   );
 };

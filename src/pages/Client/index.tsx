@@ -46,7 +46,7 @@ const ClientPage: React.FC = () => {
     },
     {
       title: '历史下单总数',
-      dataIndex: 'totalOrderNumber',
+      dataIndex: 'historyOrderCount',
       valueType: 'digit'
     },
     {

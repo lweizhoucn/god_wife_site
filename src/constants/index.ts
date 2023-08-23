@@ -79,6 +79,10 @@ export const orderState = {
     status: 'process',
   },
   1: {
+    text: '已送未付款',
+    status: 'warning',
+  },
+  2: {
     text: '完成',
     status: 'success',
   },
@@ -87,4 +91,5 @@ export const orderState = {
 export const orderStateSelect = [
   { label: orderState[0].text, value: 0 },
   { label: orderState[1].text, value: 1 },
+  { label: orderState[2].text, value: 2 },
 ];

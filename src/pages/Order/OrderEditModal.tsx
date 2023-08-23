@@ -1,3 +1,4 @@
+import { orderStateSelect } from '@/constants';
 import { selectList as cliet_list } from '@/services/godcai/client_service';
 import { add, update } from '@/services/godcai/order_service';
 import { list as sku_list } from '@/services/godcai/sku_service';
@@ -19,7 +20,7 @@ const skuRequest = async (keyword?: string) => {
   const skuList: ResultInfo<SkuInfo> = await sku_list({
     pageSize: 10,
     current: 1,
-    ...{ name: keyword },
+    ...{ name: keyword, state: 0 },
   });
   const res: any[] = [];
   skuList.data?.forEach((i) => {
@@ -65,7 +66,8 @@ const OrderEditModal: React.FC<{
               : message.success(`${edit ? '更新' : '新增'}成功`);
             success && reload();
             return success;
-          }).then((ret) => ok = ret);
+          })
+          .then((ret) => (ok = ret));
         return ok;
       }}
     >
@@ -74,8 +76,16 @@ const OrderEditModal: React.FC<{
         showSearch
         name="clientId"
         label="客户"
+        initialValue={clientFormat(current?.clientInfo)}
         request={({ keyword }) => {
           return clientRequest(keyword);
+        }}
+        rules={[{required: true}]}
+        transform={(val) => {
+          if (val === clientFormat(current?.clientInfo)) {
+            return { clientId: current?.clientInfo.id };
+          }
+          return { clientId: val };
         }}
       />
       <ProFormSelect
@@ -85,9 +95,18 @@ const OrderEditModal: React.FC<{
         request={({ keyword }) => {
           return skuRequest(keyword);
         }}
+        rules={[{required: true}]}
+        transform={(val) => {
+          if (val === current?.skuInfo.name) {
+            return { skuId: current?.skuInfo.id };
+          }
+          return { skuId: val };
+        }}
+        initialValue={current?.skuInfo.name}
       />
-      <ProFormDigit name="orderCount" label="数量" />
-      <ProFormDatePicker name="sendDate" label="送达时间" />
+      <ProFormDigit name="orderCount" label="数量" initialValue={!edit && 1}  rules={[{required: true}]}/>
+      <ProFormSelect name="state" label="状态" options={orderStateSelect}  rules={[{required: true}]}/>
+      <ProFormDatePicker name="sendDate" label="送达时间"  rules={[{required: true}]}/>
     </ModalForm>
   );
 };
