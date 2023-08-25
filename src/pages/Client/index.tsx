@@ -54,7 +54,7 @@ const ClientPage: React.FC = () => {
       valueType: 'option',
       render: (_, record) => [
         <ClientEditModal edit={true} current={record} reload={reloadData} />,
-        <OrderEditModal edit={false} reload={reloadData}/>,
+        <OrderEditModal edit={false} reload={reloadData} clientInfo={record}/>,
       ],
     },
   ];

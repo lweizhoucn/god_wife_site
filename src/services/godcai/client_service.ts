@@ -19,7 +19,8 @@ export async function list(
 export async function selectList(keyword?:string) {
   return request<ResultInfo<ClinetInfo>>('/client/list/select', {
     method: 'GET',
-    params: { keyword },
+    params:  {keyword} ,
+    
   });
 }
 

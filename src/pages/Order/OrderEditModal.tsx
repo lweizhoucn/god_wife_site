@@ -42,7 +42,8 @@ const OrderEditModal: React.FC<{
   current?: OrderInfo;
   edit: boolean;
   reload: () => void;
-}> = ({ current, edit, reload }) => {
+  clientInfo? : ClinetInfo;
+}> = ({ current, edit, reload,clientInfo }) => {
   return (
     <ModalForm
       {...formItemLayout}
@@ -76,14 +77,15 @@ const OrderEditModal: React.FC<{
         showSearch
         name="clientId"
         label="客户"
-        initialValue={clientFormat(current?.clientInfo)}
-        request={({ keyword }) => {
-          return clientRequest(keyword);
+        disabled = {clientInfo != null}
+        initialValue={clientFormat(clientInfo)}
+        request={({ keyWords }) => {
+          return clientRequest(keyWords);
         }}
         rules={[{required: true}]}
         transform={(val) => {
-          if (val === clientFormat(current?.clientInfo)) {
-            return { clientId: current?.clientInfo.id };
+          if (val === clientFormat(clientInfo)) {
+            return { clientId: clientInfo?.id };
           }
           return { clientId: val };
         }}
@@ -92,8 +94,8 @@ const OrderEditModal: React.FC<{
         showSearch
         name="skuId"
         label="商品"
-        request={({ keyword }) => {
-          return skuRequest(keyword);
+        request={({keyWords}) => {
+          return skuRequest(keyWords);
         }}
         rules={[{required: true}]}
         transform={(val) => {

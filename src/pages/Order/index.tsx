@@ -10,7 +10,7 @@ import { useRef } from 'react';
 import ClientEditModal from './OrderEditModal';
 import { clientState, orderPlatform, orderState, skuState } from '@/constants';
 import OrderEditModal from './OrderEditModal';
-import { Image } from 'antd';
+import { Image, Tag } from 'antd';
 import { clientFormat } from '@/utils/format';
 
 const ClientPage: React.FC = () => {
@@ -31,7 +31,8 @@ const ClientPage: React.FC = () => {
       dataIndex: 'clientInfo',
       valueType: 'text',
       render: (_,record) =>{
-        return clientFormat(record.clientInfo)
+        // return 
+        return <Tag color='green'>{record.clientInfo.building + "-" + record.clientInfo.roomNumber}</Tag>
       },
       search:false,
     },

@@ -57,13 +57,13 @@ const SkuEditModal: React.FC<{
       <ProFormDigit name="id" label="ID" disabled hidden={!edit} />
       <ProFormText name="name" label="名称" rules={[{ required: true }]} />
       <ProFormDigit name="price" label="价格" rules={[{ required: true }]} />
-      <ProFormDateTimePicker
+      {/* <ProFormDateTimePicker
         transform={(val) => {
           return { closeTime: dayjs(val).format('YYYY-MM-DD HH:mm:ss') };
         }}
         name="closeTime"
         label="截单时间"
-      />
+      /> */}
       <ProFormDatePicker name="sendDate" label="送达时间" />
       <ProFormSelect
         name="state"

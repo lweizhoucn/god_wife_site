@@ -43,11 +43,11 @@ const ClientPage: React.FC = () => {
       search: false,
     },
 
-    {
-      title: '截止时间',
-      dataIndex: 'closeTime',
-      valueType: 'dateTime',
-    },
+    // {
+    //   title: '截止时间',
+    //   dataIndex: 'closeTime',
+    //   valueType: 'dateTime',
+    // },
     {
       title: '送达日期',
       dataIndex: 'sendDate',
